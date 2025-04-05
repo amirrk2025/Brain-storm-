@@ -1,3 +1,337 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="fa" dir="rtl">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>مکالمه هوش مصنوعی</title>-->
+<!--    <style>-->
+<!--        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');-->
+
+<!--        body {-->
+<!--            font-family: 'Vazirmatn', sans-serif;-->
+<!--            max-width: 1000px;-->
+<!--            margin: 0 auto;-->
+<!--            padding: 40px 20px;-->
+<!--            background: linear-gradient(135deg, #1e1e2f 0%, #2a2a4e 100%);-->
+<!--            color: #e0e0e0;-->
+<!--            overflow-x: hidden;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            gap: 30px;-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            background: rgba(255, 255, 255, 0.05);-->
+<!--            border-radius: 20px;-->
+<!--            padding: 30px;-->
+<!--            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        h1, h2 {-->
+<!--            color: #ffffff;-->
+<!--            text-align: center;-->
+<!--            text-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);-->
+<!--        }-->
+
+<!--        #chatContainer {-->
+<!--            background: rgba(255, 255, 255, 0.1);-->
+<!--            border-radius: 15px;-->
+<!--            padding: 25px;-->
+<!--            min-height: 450px;-->
+<!--            max-height: 650px;-->
+<!--            overflow-y: auto;-->
+<!--            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);-->
+<!--            border: 1px solid rgba(255, 255, 255, 0.2);-->
+<!--        }-->
+
+<!--        .message {-->
+<!--            margin: 20px 0;-->
+<!--            padding: 15px 20px;-->
+<!--            border-radius: 15px;-->
+<!--            max-width: 85%;-->
+<!--            line-height: 1.8;-->
+<!--            position: relative;-->
+<!--            animation: slideIn 0.5s ease-out;-->
+<!--            backdrop-filter: blur(5px);-->
+<!--        }-->
+
+<!--        .ai1 {-->
+<!--            background: linear-gradient(45deg, #00c6ff, #0072ff);-->
+<!--            margin-right: auto;-->
+<!--            border-top-left-radius: 0;-->
+<!--            color: #fff;-->
+<!--        }-->
+
+<!--        .ai2 {-->
+<!--            background: linear-gradient(45deg, #ff7e5f, #feb47b);-->
+<!--            margin-left: auto;-->
+<!--            border-top-right-radius: 0;-->
+<!--            color: #fff;-->
+<!--        }-->
+
+<!--        .input-group {-->
+<!--            display: flex;-->
+<!--            gap: 15px;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        #topicInput, #apiKeyInput, #baseUrlInput {-->
+<!--            flex: 1;-->
+<!--            padding: 15px;-->
+<!--            border-radius: 12px;-->
+<!--            border: none;-->
+<!--            background: rgba(255, 255, 255, 0.15);-->
+<!--            color: #fff;-->
+<!--            font-size: 1.1em;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        #topicInput:focus, #apiKeyInput:focus, #baseUrlInput:focus {-->
+<!--            outline: none;-->
+<!--            background: rgba(255, 255, 255, 0.25);-->
+<!--            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);-->
+<!--        }-->
+
+<!--        button {-->
+<!--            padding: 15px 30px;-->
+<!--            border-radius: 12px;-->
+<!--            border: none;-->
+<!--            background: linear-gradient(90deg, #ff6b6b, #ff8e53);-->
+<!--            color: #fff;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 1.1em;-->
+<!--            transition: transform 0.3s, box-shadow 0.3s;-->
+<!--            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);-->
+<!--        }-->
+
+<!--        button:hover {-->
+<!--            transform: translateY(-3px);-->
+<!--            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);-->
+<!--        }-->
+
+<!--        .loading {-->
+<!--            display: none;-->
+<!--            text-align: center;-->
+<!--            color: #a0a0a0;-->
+<!--            font-style: italic;-->
+<!--            padding: 15px;-->
+<!--            animation: pulse 1.5s infinite;-->
+<!--        }-->
+
+<!--        .role-label {-->
+<!--            font-weight: 700;-->
+<!--            margin-bottom: 8px;-->
+<!--            display: block;-->
+<!--            color: #ffffff;-->
+<!--            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        .error-message {-->
+<!--            color: #ff6b6b;-->
+<!--            text-align: center;-->
+<!--            padding: 15px;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        @keyframes slideIn {-->
+<!--            from { opacity: 0; transform: translateX(50px); }-->
+<!--            to { opacity: 1; transform: translateX(0); }-->
+<!--        }-->
+
+<!--        @keyframes pulse {-->
+<!--            0% { opacity: 0.6; }-->
+<!--            50% { opacity: 1; }-->
+<!--            100% { opacity: 0.6; }-->
+<!--        }-->
+
+<!--        #chatContainer::-webkit-scrollbar {-->
+<!--            width: 8px;-->
+<!--        }-->
+
+<!--        #chatContainer::-webkit-scrollbar-thumb {-->
+<!--            background: rgba(255, 255, 255, 0.3);-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+
+<!--        #chatContainer::-webkit-scrollbar-track {-->
+<!--            background: rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h1>بحث بین دو مدل هوش مصنوعی</h1>-->
+<!--    <div class="input-group">-->
+<!--        <input type="text" id="topicInput" placeholder="موضوع بحث را وارد کنید">-->
+<!--        <button onclick="startDiscussion()">شروع بحث</button>-->
+<!--    </div>-->
+<!--    <div id="loading" class="loading">در حال پردازش...</div>-->
+<!--    <div id="error" class="error-message"></div>-->
+<!--    <div id="chatContainer"></div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+<!--    <h2>تنظیمات API</h2>-->
+<!--    <div class="input-group" style="flex-direction: column; align-items: stretch;">-->
+<!--        <input type="text" id="apiKeyInput" placeholder="API Key را وارد کنید" />-->
+<!--        <input type="text" id="baseUrlInput" placeholder="Base URL را وارد کنید" />-->
+<!--        <button onclick="saveSettings()">ذخیره تنظیمات</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function saveSettings() {-->
+<!--        const key = document.getElementById('apiKeyInput').value.trim();-->
+<!--        const url = document.getElementById('baseUrlInput').value.trim();-->
+
+<!--        if (!key || !url) {-->
+<!--            alert('لطفاً هر دو مقدار را وارد کنید');-->
+<!--            return;-->
+<!--        }-->
+
+<!--        localStorage.setItem('apiKey', key);-->
+<!--        localStorage.setItem('baseUrl', url);-->
+<!--        alert('تنظیمات ذخیره شد ✅');-->
+<!--    }-->
+
+<!--    window.addEventListener('DOMContentLoaded', () => {-->
+<!--        const savedKey = localStorage.getItem('apiKey');-->
+<!--        const savedUrl = localStorage.getItem('baseUrl');-->
+<!--        if (savedKey) document.getElementById('apiKeyInput').value = savedKey;-->
+<!--        if (savedUrl) document.getElementById('baseUrlInput').value = savedUrl;-->
+<!--    });-->
+
+<!--    async function callAI(prompt, role) {-->
+<!--        const apiKey = localStorage.getItem('apiKey');-->
+<!--        const baseUrl = localStorage.getItem('baseUrl');-->
+<!--        const errorElement = document.getElementById('error');-->
+<!--        errorElement.textContent = '';-->
+
+<!--        if (!apiKey || !baseUrl) {-->
+<!--            errorElement.textContent = 'لطفاً ابتدا تنظیمات API را وارد و ذخیره کنید.';-->
+<!--            return null;-->
+<!--        }-->
+
+<!--        try {-->
+<!--            const response = await fetch(`${baseUrl}/chat/completions`, {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                    'Authorization': `Bearer ${apiKey}`-->
+<!--                },-->
+<!--                body: JSON.stringify({-->
+<!--                    model: "gpt-4o-mini",-->
+<!--                    messages: [-->
+<!--                        {-->
+<!--                            role: "system",-->
+<!--                            content: role === 'ai1' ?-->
+<!--                                "شما یک متفکر خلاق هستید. ایده‌های نوآورانه ارائه دهید. پاسخ‌ها را به زبان فارسی و با جزئیات بیان کنید." :-->
+<!--                                "شما یک تحلیلگر منتقد هستید. ایده‌ها را بررسی و نقاط قوت و ضعف آنها را بیان کنید. پاسخ‌ها را به زبان فارسی و با استدلال ارائه دهید."-->
+<!--                        },-->
+<!--                        { role: "user", content: prompt }-->
+<!--                    ],-->
+<!--                    temperature: 0.7,-->
+<!--                    max_tokens: 1000-->
+<!--                })-->
+<!--            });-->
+
+<!--            if (!response.ok) {-->
+<!--                const errorData = await response.json();-->
+<!--                throw new Error(errorData.error?.message || `خطای سرور با کد ${response.status}`);-->
+<!--            }-->
+
+<!--            const data = await response.json();-->
+<!--            return data.choices[0].message.content;-->
+<!--        } catch (error) {-->
+<!--            console.error(`خطا در تماس با API برای ${role}:`, error);-->
+<!--            errorElement.textContent = `خطا در ارتباط با سرور: ${error.message}`;-->
+<!--            return null;-->
+<!--        }-->
+<!--    }-->
+
+<!--    function addMessage(message, isAI1) {-->
+<!--        const chatContainer = document.getElementById('chatContainer');-->
+<!--        const messageDiv = document.createElement('div');-->
+<!--        messageDiv.className = `message ${isAI1 ? 'ai1' : 'ai2'}`;-->
+
+<!--        const roleLabel = document.createElement('span');-->
+<!--        roleLabel.className = 'role-label';-->
+<!--        roleLabel.textContent = isAI1 ? 'خلاق:' : 'منتقد:';-->
+
+<!--        const messageContent = document.createElement('div');-->
+<!--        messageContent.innerHTML = message.replace(/\n/g, "<br>");-->
+
+<!--        messageDiv.appendChild(roleLabel);-->
+<!--        messageDiv.appendChild(messageContent);-->
+<!--        chatContainer.appendChild(messageDiv);-->
+<!--        chatContainer.scrollTop = chatContainer.scrollHeight;-->
+<!--    }-->
+
+<!--    let isProcessing = false;-->
+
+<!--    async function startDiscussion() {-->
+<!--        if (isProcessing) return;-->
+
+<!--        const topic = document.getElementById('topicInput').value.trim();-->
+<!--        if (!topic) {-->
+<!--            alert('لطفاً موضوع بحث را وارد کنید');-->
+<!--            return;-->
+<!--        }-->
+
+<!--        const loadingElement = document.getElementById('loading');-->
+<!--        const chatContainer = document.getElementById('chatContainer');-->
+<!--        const errorElement = document.getElementById('error');-->
+
+<!--        chatContainer.innerHTML = '';-->
+<!--        errorElement.textContent = '';-->
+<!--        loadingElement.style.display = 'block';-->
+<!--        isProcessing = true;-->
+
+<!--        let currentSpeaker = 'ai1';-->
+<!--        let prompt = `بحث و تبادل نظر درباره موضوع: «${topic}». لطفاً نظر خود را بیان کنید.`;-->
+<!--        let previousResponse = '';-->
+
+<!--        try {-->
+<!--            for (let i = 0; i < 6; i++) {-->
+<!--                loadingElement.textContent = currentSpeaker === 'ai1' ?-->
+<!--                    'خلاق در حال تولید ایده...' : 'منتقد در حال تحلیل...';-->
+
+<!--                const response = await callAI(prompt, currentSpeaker);-->
+
+<!--                if (response) {-->
+<!--                    addMessage(response, currentSpeaker === 'ai1');-->
+<!--                    previousResponse = response;-->
+<!--                } else {-->
+<!--                    addMessage('پاسخ دریافت نشد، بحث ادامه می‌یابد...', currentSpeaker === 'ai1');-->
+<!--                    previousResponse = 'پاسخ دریافت نشد.';-->
+<!--                }-->
+
+<!--                prompt = `نظر قبلی: ${previousResponse}\n\n`;-->
+<!--                prompt += currentSpeaker === 'ai1' ?-->
+<!--                    'لطفاً این ایده را تحلیل و نقاط قوت و ضعف آن را بیان کنید.' :-->
+<!--                    'لطفاً با ارائه ایده جدید یا تکمیل این تحلیل، بحث را ادامه دهید.';-->
+
+<!--                currentSpeaker = currentSpeaker === 'ai1' ? 'ai2' : 'ai1';-->
+<!--                await new Promise(resolve => setTimeout(resolve, 1500));-->
+<!--            }-->
+<!--        } catch (error) {-->
+<!--            console.error('خطا در اجرای بحث:', error);-->
+<!--            errorElement.textContent = `خطا در اجرای بحث: ${error.message}`;-->
+<!--        } finally {-->
+<!--            loadingElement.style.display = 'none';-->
+<!--            isProcessing = false;-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -36,49 +370,14 @@
             animation: fadeIn 1s ease-in-out;
         }
 
-        #chatContainer {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            min-height: 450px;
-            max-height: 650px;
-            overflow-y: auto;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .message {
-            margin: 20px 0;
-            padding: 15px 20px;
-            border-radius: 15px;
-            max-width: 85%;
-            line-height: 1.8;
-            position: relative;
-            animation: slideIn 0.5s ease-out;
-            backdrop-filter: blur(5px);
-        }
-
-        .ai1 {
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            margin-right: auto;
-            border-top-left-radius: 0;
-            color: #fff;
-        }
-
-        .ai2 {
-            background: linear-gradient(45deg, #ff7e5f, #feb47b);
-            margin-left: auto;
-            border-top-right-radius: 0;
-            color: #fff;
-        }
-
-        .input-group {
+        .input-group, .settings {
             display: flex;
             gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        #topicInput {
+        input[type="text"] {
             flex: 1;
             padding: 15px;
             border-radius: 12px;
@@ -89,7 +388,7 @@
             transition: all 0.3s ease;
         }
 
-        #topicInput:focus {
+        input[type="text"]:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.25);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
@@ -110,6 +409,43 @@
         button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        #chatContainer {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            min-height: 450px;
+            max-height: 650px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .message {
+            margin: 20px 0;
+            padding: 15px 20px;
+            border-radius: 15px;
+            max-width: 85%;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .ai1 {
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            margin-right: auto;
+            border-top-left-radius: 0;
+            color: #fff;
+        }
+
+        .ai2 {
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            margin-left: auto;
+            border-top-right-radius: 0;
+            color: #fff;
         }
 
         .loading {
@@ -136,7 +472,6 @@
             font-weight: 500;
         }
 
-        /* انیمیشن‌ها */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -153,7 +488,6 @@
             100% { opacity: 0.6; }
         }
 
-        /* اسکرولبار سفارشی */
         #chatContainer::-webkit-scrollbar {
             width: 8px;
         }
@@ -171,21 +505,42 @@
 <body>
 <div class="container">
     <h1>بحث بین دو مدل هوش مصنوعی</h1>
+
+    <div class="settings">
+        <input type="text" id="apiKeyInput" placeholder="API Key را وارد کنید">
+        <input type="text" id="apiUrlInput" placeholder="Base URL را وارد کنید">
+        <button onclick="saveSettings()">ذخیره تنظیمات</button>
+    </div>
+
     <div class="input-group">
         <input type="text" id="topicInput" placeholder="موضوع بحث را وارد کنید (مثال: تأثیر هوش مصنوعی بر آینده کار)">
         <button onclick="startDiscussion()">شروع بحث</button>
+        <button onclick="stopDiscussion()">⛔ توقف</button>
     </div>
+
     <div id="loading" class="loading">در حال پردازش...</div>
     <div id="error" class="error-message"></div>
     <div id="chatContainer"></div>
 </div>
 
 <script>
-    const API_KEY = 'aa-YpW1MgIK7ckmIdnljf5JAJ6xpApzOKsjig60D7OyAlq0IiNr'; // کلید API شما
-    const API_BASE_URL = 'https://api.avalai.ir/v1';
     let isProcessing = false;
+    let stopRequested = false;
+
+    function saveSettings() {
+        localStorage.setItem('apiKey', document.getElementById('apiKeyInput').value.trim());
+        localStorage.setItem('apiUrl', document.getElementById('apiUrlInput').value.trim());
+        alert("تنظیمات ذخیره شد ✅");
+    }
+
+    function loadSettings() {
+        document.getElementById('apiKeyInput').value = localStorage.getItem('apiKey') || '';
+        document.getElementById('apiUrlInput').value = localStorage.getItem('apiUrl') || '';
+    }
 
     async function callAI(prompt, role) {
+        const API_KEY = localStorage.getItem('apiKey');
+        const API_BASE_URL = localStorage.getItem('apiUrl');
         const errorElement = document.getElementById('error');
         errorElement.textContent = '';
 
@@ -197,7 +552,7 @@
                     'Authorization': `Bearer ${API_KEY}`
                 },
                 body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
+                    model: "gpt-4o-mini",
                     messages: [
                         {
                             role: "system",
@@ -208,7 +563,7 @@
                         { role: "user", content: prompt }
                     ],
                     temperature: 0.7,
-                    max_tokens: 1000 // افزایش به 1000 برای پاسخ‌های طولانی‌تر
+                    max_tokens: 1000
                 })
             });
 
@@ -218,17 +573,11 @@
             }
 
             const data = await response.json();
-            console.log(`پاسخ API برای ${role}:`, data); // لاگ برای دیباگ
-
-            if (!data.choices || !data.choices[0].message) {
-                throw new Error('ساختار پاسخ نامعتبر است');
-            }
-
-            return data.choices[0].message.content;
+            return data.choices?.[0]?.message?.content || 'پاسخی دریافت نشد';
         } catch (error) {
-            console.error(`خطا در تماس با API برای ${role}:`, error);
-            errorElement.textContent = `خطا در ارتباط با سرور: ${error.message}`;
-            return null; // به جای false، null برگردونیم تا بهتر مدیریت بشه
+            console.error("API Error:", error);
+            errorElement.textContent = `خطا: ${error.message}`;
+            return null;
         }
     }
 
@@ -250,22 +599,23 @@
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
+    function stopDiscussion() {
+        stopRequested = true;
+    }
+
     async function startDiscussion() {
         if (isProcessing) return;
+        stopRequested = false;
 
         const topic = document.getElementById('topicInput').value.trim();
-        if (!topic) {
-            alert('لطفاً موضوع بحث را وارد کنید');
-            return;
-        }
+        if (!topic) return alert('موضوعی وارد نشده');
 
-        const loadingElement = document.getElementById('loading');
+        const loading = document.getElementById('loading');
         const chatContainer = document.getElementById('chatContainer');
-        const errorElement = document.getElementById('error');
-
+        const error = document.getElementById('error');
         chatContainer.innerHTML = '';
-        errorElement.textContent = '';
-        loadingElement.style.display = 'block';
+        error.textContent = '';
+        loading.style.display = 'block';
         isProcessing = true;
 
         let currentSpeaker = 'ai1';
@@ -274,36 +624,41 @@
 
         try {
             for (let i = 0; i < 6; i++) {
-                loadingElement.textContent = currentSpeaker === 'ai1' ?
+                if (stopRequested) {
+                    addMessage('✅ بحث متوقف شد توسط کاربر.', true);
+                    break;
+                }
+
+                loading.textContent = currentSpeaker === 'ai1' ?
                     'خلاق در حال تولید ایده...' : 'منتقد در حال تحلیل...';
 
                 const response = await callAI(prompt, currentSpeaker);
-
                 if (response) {
                     addMessage(response, currentSpeaker === 'ai1');
                     previousResponse = response;
                 } else {
                     addMessage('پاسخ دریافت نشد، بحث ادامه می‌یابد...', currentSpeaker === 'ai1');
-                    previousResponse = 'پاسخ دریافت نشد.';
                 }
 
-                prompt = `نظر قبلی: ${previousResponse}\n\n`;
+                prompt = `نظر قبلی:
+${previousResponse}
+\n`;
                 prompt += currentSpeaker === 'ai1' ?
                     'لطفاً این ایده را تحلیل و نقاط قوت و ضعف آن را بیان کنید.' :
                     'لطفاً با ارائه ایده جدید یا تکمیل این تحلیل، بحث را ادامه دهید.';
 
                 currentSpeaker = currentSpeaker === 'ai1' ? 'ai2' : 'ai1';
-                await new Promise(resolve => setTimeout(resolve, 1500)); // تأخیر برای طبیعی بودن
+                await new Promise(res => setTimeout(res, 1500));
             }
-        } catch (error) {
-            console.error('خطا در اجرای بحث:', error);
-            errorElement.textContent = `خطا در اجرای بحث: ${error.message}`;
+        } catch (err) {
+            error.textContent = '⚠️ خطایی رخ داد: ' + err.message;
         } finally {
-            loadingElement.style.display = 'none';
+            loading.style.display = 'none';
             isProcessing = false;
         }
     }
-</script>
 
+    loadSettings();
+</script>
 </body>
 </html>
